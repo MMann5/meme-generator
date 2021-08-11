@@ -1,0 +1,337 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+
+}
+
+html {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+body {
+    font-size: 1.5rem;
+    margin: 0;
+    position: relative;
+    background-color: #292929e0;
+}
+
+img {
+    width: 100%;
+    object-fit: cover;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/*HELPERS*/
+.grid {
+    display: grid;
+}
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+/* HEADER */
+
+.main-layout {
+    width: 980px;
+    margin: 0 auto;
+}
+
+
+.main-header {
+    height: 100px;
+    border-bottom: solid 6px #1e1e1e;
+    background-color: #292929;
+}
+
+.logo img {
+    width: 200px;
+}
+
+/* NAV */
+.main-nav .nav {
+    display: block;
+    width: 130px;
+    line-height: 100px;
+    text-align: center;
+}
+
+.main-nav a {
+    color: orangered;
+}
+
+.main-nav .nav:hover {
+    color: white;
+}
+
+a.active {
+    color: white;
+}
+
+/* MAIN  -- GALLERY */
+#pictures {
+    background-color: orangered;
+    display: block;
+    margin: 10px auto 10px;
+    width: 200px;
+    height: 30px;
+}
+
+.container {
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.pictures-container img {
+    cursor: pointer;
+}
+
+.editor {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    display: none;
+    justify-content: center;
+    gap: 10px;
+}
+
+.canvas-container {
+    border: black 5px solid;
+    margin: 0;
+    padding: 0;
+    border-bottom: red 5px solid;
+}
+
+#canvas-edit {
+    background-color: pink;
+    width: 400px;
+    height: 400px;
+    margin: 0;
+    padding: 0;
+}
+
+.editor-manage {
+    width: 400px;
+    padding: 5px 5px;
+    justify-content: space-around;
+    border: solid 1px black;
+}
+
+.meme-text {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 30px;
+    width: 50%;
+}
+
+.manage-text {
+    justify-content: center;
+    gap: 10px;
+    padding: 0;
+    margin: 10px;
+}
+
+.manage-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.modify-text {
+    margin: auto;
+    border-radius: 15px;
+    grid-template-columns: repeat(4, 70px);
+    grid-template-rows: repeat(3, 70px);
+    grid-template-areas:
+        "up down txtup txtdown"
+        "aleft aright acenter ."
+        "select select select .";
+    justify-items: stretch;
+    align-items: stretch;
+}
+
+.size-up {
+    grid-area: up;
+}
+
+.size-down {
+    grid-area: down;
+}
+
+.txt-up {
+    grid-area: txtup
+}
+
+.txt-down {
+    grid-area: txtdown
+}
+
+.align-left {
+    grid-area: aleft;
+}
+
+.align-center {
+    grid-area: aright;
+}
+
+.align-right {
+    grid-area: acenter;
+}
+
+
+.font-select {
+    grid-area: select;
+    height: 50px;
+    border-radius: 10px;
+    background-color: orangered;
+}
+
+.share-container {
+    background-color: rgba(255, 255, 255, 0.267);
+}
+
+.upload {
+    background-color: orangered;
+    width: 100px;
+    border-radius: 10px;
+    height: 30px;
+    font-size: large;
+}
+
+a.download{
+    margin: auto;
+}
+
+.main-footer{
+    height: 100px;
+    border-top: solid 6px #1e1e1e;
+    background-color: #292929;
+    font-size: 1.5rem;
+    color: orangered;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* @media (max-width : 780px) {
+    .main-header {
+        height: 80px;
+        background-color: orange;
+    }
+
+    .main-header .header-container {
+        margin-inline-end: 0px;
+    }
+
+    .logo {
+        padding-inline-start: 20px;
+    }
+
+    .logo img {
+        width: 100px;
+    }
+
+    /* NAV */
+/* .main-nav .nav {
+        display: block;
+        letter-spacing: 0.8px;
+        width: 130px;
+        line-height: 100px;
+        text-align: center;
+        padding-inline-end: 20px;
+    }
+
+    .main-nav a {
+        color: black;
+    }
+
+    .main-nav .nav:hover {
+        color: grey;
+    }
+
+    a.active {
+        color: grey;
+    }
+
+    .main-footer {
+        border: solid orange 1px;
+        /* flex-direction: column;
+        font-size: 1rem;
+        margin: auto;
+        background-color: orange;
+    }
+
+    .main-footer .logo-write {
+        padding-top: 20px;
+        font-weight: 400;
+    }
+
+    .main-footer .credits {
+        padding: 20px;
+    }
+
+    .pictures-container {
+        background-color: rgba(128, 128, 128, 0.541);
+        margin: 2%;
+    }
+
+    .editor {
+        padding: 1rem 2.5rem;
+        display: none;
+        justify-content: space-evenly;
+        background-color: transparent;
+        gap: 10px;
+    }
+
+    canvas {
+        background-color: pink;
+    }
+
+    .edit-settings-container {
+        gap: 0px;
+        border: solid 5px black;
+        background-color: #19fff346;
+    }
+
+    .editor {
+        flex-direction: column;
+    }
+
+    canvas {
+        width: 355px;
+    }
+} */
