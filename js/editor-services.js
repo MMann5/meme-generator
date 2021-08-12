@@ -47,16 +47,16 @@ const addText = () => {
         txt: 'Enjoy your meme',
         size: 25,
         align: 'center',
-        color: gColor,
+        color: 'black',
         pos: textPosition(gMeme.lines.length),
         font: 'impact',
     }
     gMeme.lines.push(newLine)
 }
 
-const setColor = () => {
-    var elCol = document.querySelector('.color').value
-    gColor = elCol
+const setColor = value => {
+    var currLine = getCurrentTxt()
+    currLine.color = value
 }
 
 const getColor = () => {

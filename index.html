@@ -73,8 +73,7 @@
                             src="img/ICONS/center-text-alignment.png"></button>
                     <button class="manage-btn align-right" onclick="onSetDirectionAlign('left')"><img
                             src="img/ICONS/align-to-right.png"></button>
-                    <input type="color" class="manage-btn color" onclick="onSetColor()">
-                    <!-- <button class="coco"><img src="img/ICONS/paint-board-and-brush.png" alt=""><input type="color" class="manage-btn color" onclick="onSetColor()"></button> -->
+                    <input type="color" class="manage-btn color" oninput="onSetColor(this.value)">
                     <select class="font-select" name="font" onchange="onSetFont(this.value)">
                         <option value="impact">Impact</option>
                         <option value="cursive">Cursive</option>

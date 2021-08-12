@@ -37,10 +37,6 @@ a {
     color: black;
 }
 
-p {
-    cursor: pointer;
-}
-
 ::-webkit-scrollbar {
     width: 20px;
 }
@@ -234,7 +230,6 @@ color: white;
     height: 50px;
     border-radius: 10px;
     cursor: pointer;
-
 }
 
 .modify-text {

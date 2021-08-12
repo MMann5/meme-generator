@@ -45,7 +45,6 @@ const renderCanvas = () => {
     var img = new Image()
     img.src = getImageById(meme.selectedImgId).url
     img.onload = () => {
-        getColor()
         clearCanvas()
         setInputText()
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
@@ -88,9 +87,8 @@ const onSwitch = () => {
     switchLine()
     renderCanvas()
 }
-const onSetColor = () => {
-    setColor()
-    // drawText()
+const onSetColor = value => {
+    setColor(value)
     renderCanvas()
 }
 
