@@ -44,14 +44,6 @@
                 <p onclick="coucou(this)" data-trans="kids" id="kids">KIDS</p>
             </div>
             <input type="text" id="pictures" placeholder="write your category" oninput="onFilter()">
-            <!-- <select name="pictures" id="pictures" onchange="onFilter()">
-                <option data-trans="all" value="all">ALL</option>
-                <option data-trans="politic" value="politic">POLITIC</option>
-                <option data-trans="animals" value="animals">ANIMALS</option>
-                <option data-trans="funny" value="funny">FUNNY</option>
-                <option data-trans="kids" value="kids">KIDS</option>
-                <option data-trans="movie" value="moovie">MOOVIE</option>
-            </select> -->
             <div class="container pictures-container grid">
             </div>
         </div>
@@ -83,6 +75,7 @@
                     <button class="manage-btn align-right" onclick="onSetDirectionAlign('left')"><img
                             src="img/ICONS/align-to-right.png"></button>
                     <input type="color" class="manage-btn color" onclick="onSetColor()">
+                    <!-- <button class="coco"><img src="img/ICONS/paint-board-and-brush.png" alt=""><input type="color" class="manage-btn color" onclick="onSetColor()"></button> -->
                     <select class="font-select" name="font" onchange="onSetFont(this.value)">
                         <option value="impact">Impact</option>
                         <option value="cursive">Cursive</option>
