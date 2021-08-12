@@ -66,22 +66,22 @@ var gImgages = [{
     {
         id: 13,
         url: 'img/13.jpg',
-        keywords: ['moovie', 'all']
+        keywords: ['movie', 'all']
     },
     {
         id: 14,
         url: 'img/14.jpg',
-        keywords: ['moovie', 'all']
+        keywords: ['movie', 'all']
     },
     {
         id: 15,
         url: 'img/15.jpg',
-        keywords: ['moovie', 'all']
+        keywords: ['movie', 'all']
     },
     {
         id: 16,
         url: 'img/16.jpg',
-        keywords: ['moovie', 'funny', 'all']
+        keywords: ['movie', 'funny', 'all']
     },
     {
         id: 17,
@@ -91,12 +91,7 @@ var gImgages = [{
     {
         id: 18,
         url: 'img/18.jpg',
-        keywords: ['moovie', 'all']
-    },
-    {
-        id: 19,
-        url: 'img/19.jpg',
-        keywords: ['moovie', 'all']
+        keywords: ['movie', 'all']
     },
 ]
 
@@ -120,7 +115,7 @@ const getKeywords = () => {
     return gKeywords
 }
 
-const getImageById = (imgId) => {
+const getImageById = imgId => {
     return gImgages.find(img => img.id === imgId)
 }
 
@@ -131,4 +126,8 @@ const getImages = () => {
 const getFilter = () => {
     gSortBy = document.querySelector('#pictures').value
     return gSortBy
+}
+
+function coucou() {
+    console.log('coucou')
 }

@@ -5,7 +5,7 @@ const savToStorage = (key, val) => {
     localStorage.setItem(key, json)
 }
 
-const loadFromStorage = (key) => {
+const loadFromStorage = key => {
     var json = localStorage.getItem(key)
     var val = JSON.parse(json)
     return val

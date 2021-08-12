@@ -2,9 +2,9 @@
 
 var gCurrLang = 'en';
 var gTrans = {
-    all: {
-        en: 'ALL',
-        he: 'הכל'
+    category: {
+        en: 'Categories',
+        he: 'קטגוריות'
     },
     politic: {
         en: 'POLITIC',
@@ -48,7 +48,7 @@ var gTrans = {
     },
 }
 
-const getTrans = (transKey) => {
+const getTrans = transKey => {
     var keyTrans = gTrans[transKey]
     if (!keyTrans) return 'UNKNOWN'
     var txt = keyTrans[gCurrLang]
@@ -68,6 +68,6 @@ const doTrans = () => {
     })
 }
 
-const setLang = (lang) => {
+const setLang = lang => {
     gCurrLang = lang;
 }

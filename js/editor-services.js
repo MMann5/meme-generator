@@ -12,13 +12,13 @@ const getCurrentTxt = () => {
     return gMeme.lines[idxLine]
 }
 
-const createMeme = (id) => {
+const createMeme = id => {
     gMeme = {
         selectedImgId: id,
         selectedLineIdx: 0,
         lines: [{
             txt: 'Enjoy your meme',
-            size: 30,
+            size: 25,
             align: 'center',
             color: gColor,
             pos: {
@@ -30,7 +30,7 @@ const createMeme = (id) => {
     }
 }
 
-const createTxt = (txt) => {
+const createTxt = txt => {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
@@ -45,8 +45,8 @@ const removeLineTxt = () => {
 const addText = () => {
     gMeme.selectedLineIdx++
     var newLine = {
-        txt: 'Your text here',
-        size: 30,
+        txt: 'Enjoy your meme',
+        size: 25,
         align: 'center',
         color: gColor,
         pos: textPosition(gMeme.lines.length),
@@ -64,7 +64,7 @@ const getColor = () => {
     return gColor
 }
 
-const textPosition = (idx) => {
+const textPosition = idx => {
     if (idx === 1) return {
         x: gCanvas.width / 2,
         y: 380
@@ -89,22 +89,22 @@ const switchLine = () => {
     }
 }
 
-const setFontSize = (diff) => {
+const setFontSize = diff => {
     var currLine = getCurrentTxt()
     currLine.size += diff
 }
 
-const setDirectionAlign = (alignKey) => {
+const setDirectionAlign = key => {
     var currLine = getCurrentTxt()
-    currLine.align = alignKey
+    currLine.align = key
 }
 
-const moveTxt = (diff) => {
+const moveTxt = diff => {
     var currLine = getCurrentTxt()
     currLine.pos.y += diff
 }
 
-const setFont = (font) => {
+const setFont = font => {
     var currLine = getCurrentTxt()
     currLine.font = font
 }
@@ -114,7 +114,6 @@ const loadMemes = () => {
     if (!meme) return
     gMeme = meme
 }
-
 
 const _saveMemesToStorage = () => {
     saveToStorage(KEY, gMeme)

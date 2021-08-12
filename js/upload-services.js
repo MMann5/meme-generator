@@ -1,10 +1,9 @@
 'use strict'
-
 const uploadImg = () => {
-    const imgDataUrl = gElCanvas.toDataURL("image/jpeg");
+    const imgDataUrl = gCanvas.toDataURL("image/jpeg");
 
     // A function to be called if request succeeds
-    const onSuccess = (uploadedImgUrl) => {
+    const onSuccess = uploadedImgUrl => {
         const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
         document.querySelector('.user-msg').innerText = `Your photo is available here: ${uploadedImgUrl}`
 
@@ -26,11 +25,12 @@ const doUploadImg = (imgDataUrl, onSuccess) => {
             body: formData
         })
         .then(res => res.text())
-        .then((url) => {
+        .then(url => {
             console.log('Got back live url:', url);
             onSuccess(url)
         })
-        .catch((err) => {
+        .catch(err => {
             console.error(err)
         })
 }
+

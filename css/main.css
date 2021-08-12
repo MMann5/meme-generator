@@ -13,15 +13,17 @@ html {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+
+
+body.rtl {
+    direction: rtl;
+}
+
 body {
     font-size: 1.5rem;
     margin: 0;
     position: relative;
     background-color: #292929e0;
-}
-
-body.rtl {
-    direction: rtl;
 }
 
 
@@ -35,6 +37,30 @@ a {
     color: black;
 }
 
+p {
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px black;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: orangered;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-color: orangered;
+}
 
 /*HELPERS*/
 .grid {
@@ -107,35 +133,36 @@ a.active {
 
 .trans {
     background-color: orangered;
+    color: white;
+}
+
+.trans:hover {
+    background-color: black;
 }
 
 /* MAIN  -- GALLERY */
+.category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #pictures {
-    background-color: orangered;
     display: block;
     margin: 10px auto 10px;
     width: 200px;
     height: 30px;
 }
 
-/* .zoom {
-    transition: transform .2s;
-}
-
-.zoom:hover {
-    transform: scale(1.5);
-} */
-
-
 .zoom {
     filter: blur(2px);
-
 }
 
 .zoom:hover {
     -webkit-filter: blur(0);
     filter: blur(0);
 }
+
 .container {
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -161,7 +188,7 @@ a.active {
 }
 
 #canvas-edit {
-    background-color: pink;
+    background-color: white;
     margin: 0;
     padding: 0;
 }
@@ -178,14 +205,16 @@ a.active {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    height: 30px;
+    height: 40px;
     width: 80%;
+    border-radius: 20px;
 }
 
 .manage-text {
-    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.445);
+    border-radius: 15px;
     gap: 10px;
-    padding: 0;
+    justify-content: center;
     margin: 10px;
 }
 
@@ -202,7 +231,7 @@ a.active {
 }
 
 .modify-text {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.445);
     margin: auto;
     border-radius: 15px;
     grid-template-columns: repeat(4, 70px);
@@ -284,7 +313,7 @@ a.download {
 
 
 
-@media (max-width:980px) {
+@media (max-width:1000px) {
 
     /* HEADER */
     .main-layout {
@@ -352,6 +381,10 @@ a.download {
         grid-gap: 0.5rem;
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         margin: 5px;
+    }
+
+    .zoom {
+        filter: blur(0);
     }
 
     .canvas-container {

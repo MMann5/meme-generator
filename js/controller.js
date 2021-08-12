@@ -13,9 +13,7 @@ const onInit = () => {
     })
     renderImages()
     doTrans()
-    // addListeners()
 }
-
 
 const renderImages = () => {
     var imgs = getImages()
@@ -28,12 +26,12 @@ const renderImages = () => {
         })
     }
     var strHTML = imgs.map(img => {
-        return `<img class="meme-canevas zoom overlay" onclick="openInCanvas(${img.id})" src="${img.url}"></img>`
+        return `<img class="meme-canevas zoom" onclick="openInCanvas(${img.id})" src="${img.url}"></img>`
     })
     document.querySelector('.pictures-container').innerHTML = strHTML.join('')
 }
 
-const onSetLang = (lang) => {
+const onSetLang = lang => {
     setLang(lang);
     if (lang === 'he') {
         document.body.classList.add('rtl')
@@ -41,7 +39,6 @@ const onSetLang = (lang) => {
         document.body.classList.remove('rtl')
     }
     doTrans();
-    render();
 }
 
 const renderCanvas = () => {
@@ -53,14 +50,14 @@ const renderCanvas = () => {
         clearCanvas()
         setInputText()
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
-        meme.lines.forEach((line) => {
+        meme.lines.forEach(line => {
             drawText(line, line.pos.x, line.pos.y)
-            drawRect()
         });
+        gCtx.save()
     }
 }
 
-const renderImg = (img) => {
+const renderImg = img => {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 }
 
@@ -73,7 +70,7 @@ const resizeCanvas = () => {
     gCanvas.width = elContainer.offsetWidth - 10
 }
 
-const onCreateTxt = (txt) => {
+const onCreateTxt = txt => {
     createTxt(txt)
     renderCanvas()
 }
@@ -85,7 +82,6 @@ const onAddText = () => {
 }
 
 const onRemoveLineTxt = () => {
-
     removeLineTxt()
     renderCanvas()
 }
@@ -94,54 +90,56 @@ const onSwitch = () => {
     switchLine()
     renderCanvas()
 }
+const onSetColor = () => {
+    setColor()
+    // drawText()
+    renderCanvas()
+}
 
-const onSetFontSize = (diff) => {
+const onSetFontSize = diff => {
     setFontSize(diff)
     renderCanvas()
 }
 
-const onSetDirectionAlign = (alignKey) => {
-    setDirectionAlign(alignKey)
+const onSetDirectionAlign = key => {
+    setDirectionAlign(key)
     renderCanvas()
 }
 
-const onSetFont = (font) => {
+const onSetFont = font => {
     setFont(font)
     renderCanvas()
 }
 
-const onMoveTxt = (diff) => {
+const onMoveTxt = diff => {
     moveTxt(diff)
     renderCanvas()
 }
 
-const openPage = (pageName) => {
+const openPage = pageName => {
     var gallery = 'none'
     var editor = 'none'
-    switch (pageName) {
-        case 'gallery':
-            var gallery = 'block'
-            addActive(document.querySelector('.gallery-page'))
-            renderImages()
-            break;
-        case 'editor':
-            var editor = 'flex'
-            addActive(document.querySelector('.editor-page'))
-            break;
+    if (pageName === 'gallery') {
+        gallery = 'block'
+        addActive(document.querySelector('.gallery-page'))
+        renderImages()
+    } else if (pageName === 'editor') {
+        editor = 'flex'
+        addActive(document.querySelector('.editor-page'))
     }
     document.querySelector('.gallery').style.display = gallery
     document.querySelector('.editor').style.display = editor
 }
 
-const addActive = (elPage) => {
+const addActive = elPage => {
     var elPages = document.querySelectorAll('.header-page')
-    elPages.forEach((elPage) => {
+    elPages.forEach(elPage => {
         elPage.classList.remove('active')
     })
     elPage.classList.add('active')
 }
 
-const openInCanvas = (id) => {
+const openInCanvas = id => {
     openPage('editor')
     resizeCanvas()
     createMeme(id)
@@ -158,12 +156,12 @@ const setInputText = () => {
     document.querySelector('.meme-text').value = meme.lines[meme.selectedLineIdx].txt
 }
 
-const downloadImg = (elLink) => {
+const downloadImg = elLink => {
     var imgContent = gCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }
 
-const onImgInput = (ev) => {
+const onImgInput = ev => {
     loadImageFromInput(ev, renderImg)
 }
 
@@ -179,10 +177,7 @@ const loadImageFromInput = (ev, onImageReady) => {
     reader.readAsDataURL(ev.target.files[0])
 }
 
-const onSetColor = () => {
-    setColor()
-    drawText()
-}
+
 
 const drawText = (line, x, y) => {
     gCtx.lineWidth = 1;
@@ -192,9 +187,6 @@ const drawText = (line, x, y) => {
     gCtx.textAlign = line.align
     gCtx.fillText(line.txt, x, y)
     gCtx.strokeText(line.txt, x, y)
-}
-
-const drawRect = () => {
     var currLine = getCurrentTxt()
     gCtx.strokeStyle = 'black'
     gCtx.strokeRect(2, currLine.pos.y - currLine.size, gCanvas.width - 5, currLine.size + 5)
