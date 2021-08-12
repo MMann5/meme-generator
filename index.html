@@ -16,11 +16,19 @@
             <nav class="main-nav flex">
                 <ul class="clean-list flex">
                     <li>
-                        <a href="#" class="nav header-page gallery-page active" onclick="openPage('gallery')"> Gallery
+                        <a href="#" data-trans="gallery" class="nav header-page gallery-page active"
+                            onclick="openPage('gallery')"> Gallery
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav header-page editor-page" onclick="openPage('editor')"> Editor </a>
+                        <a href="#" data-trans="editor" class="nav header-page editor-page"
+                            onclick="openPage('editor')"> Editor </a>
+                    </li>
+                    <li>
+                        <select class="nav trans" onchange="onSetLang(this.value)">
+                            <option value="en">English</option>
+                            <option value="he">עברית</option>
+                        </select>
                     </li>
                 </ul>
             </nav>
@@ -28,71 +36,68 @@
     <main>
         <div class="gallery main-layout ">
             <select name="pictures" id="pictures" onchange="onFilter()">
-                <option value="all">ALL</option>
-                <option value="politic">POLITIC</option>
-                <option value="animals">ANIMALS</option>
-                <option value="funny">FUNNY</option>
-                <option value="kids">KIDS</option>
-                <option value="moovie">MOOVIE</option>
+                <option data-trans="all" value="all">ALL</option>
+                <option data-trans="politic" value="politic">POLITIC</option>
+                <option data-trans="animals" value="animals">ANIMALS</option>
+                <option data-trans="funny" value="funny">FUNNY</option>
+                <option data-trans="kids" value="kids">KIDS</option>
+                <option data-trans="movie" value="moovie">MOOVIE</option>
             </select>
             <div class="container pictures-container grid">
             </div>
-        </div>
-        <div class="editor main-layout">
-            <div class="canvas-container">
-                <canvas id="canvas-edit"></canvas>
             </div>
-            <section class="editor-manage flex column">
-                <input class="meme-text" type="text" value="Your text here" onkeyup="onCreateTxt(this.value)">
-
-
-
-
-                <div class="manage-text flex">
-                    <button class="manage-btn btn-switch" onclick="onSwitch()"><img
-                            src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>
-                    <button class="manage-btn btn-add" onclick="onAddText()"><img src="img/ICONS/add.png"></button>
-                    <button class="manage-btn btn-remove" onclick="onRemoveLineTxt()"><img
-                            src="img/ICONS/trash.png"></button>
+            <div class="editor main-layout">
+                <div class="canvas-container">
+                    <canvas id="canvas-edit" height="400" width="400"></canvas>
                 </div>
-
-
-
-
-
-                <div class="modify-text grid">
-                    <button class="manage-btn size-up" onclick="onSetFontSize(+2)"><img
-                            src="img/ICONS/increase font - icon.png"></button>
-                    <button class="manage-btn size-down" onclick="onSetFontSize(-2)"><img
-                            src="img/ICONS/decrease font - icon.png"></button>
-                    <button class="manage-btn txt-up" onclick="onMoveTxt(-10)">↑</button>
-                    <button class="manage-btn txt-down" onclick="onMoveTxt(+10)">↓</button>
-                    <button class="manage-btn align-left" onclick="onSetDirectionAlign('right')"><img
-                            src="img/ICONS/align-to-left.png"></button>
-                    <button class="manage-btn align-center" onclick="onSetDirectionAlign('center')"><img
-                            src="img/ICONS/center-text-alignment.png"></button>
-                    <button class="manage-btn align-right" onclick="onSetDirectionAlign('left')"><img
-                            src="img/ICONS/align-to-right.png"></button>
-                    <select class="font-select" name="font" onchange="onSetFont(this.value)">
-                        <option value="impact">Impact</option>
-                        <option value="cursive">Cursive</option>
-                        <option value="fantasy">Fantasy</option>
-                    </select>
-                </div>
-                <form class="share-container flex" method="POST" enctype="multipart/form-data" onsubmit="uploadImg()">
-                    <div class="inputs">
-                        <input type="file" name="image" onchange="onImgInput(event)" />
-                        <button onclick="uploadImg()" class="upload">Upload</button>
-                        <a href="#" onclick="downloadImg(this)"class="download" download="my-img.jpg">Download</a>
+                <section class="editor-manage flex column">
+                    <input class="meme-text" type="text" data-trans='placeholder' value="Your text here"
+                        onkeyup="onCreateTxt(this.value)">
+                    <div class="manage-text flex">
+                        <button class="manage-btn btn-switch" onclick="onSwitch()"><img
+                                src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png"></button>
+                        <button class="manage-btn btn-add" onclick="onAddText()"><img src="img/ICONS/add.png"></button>
+                        <button class="manage-btn btn-remove" onclick="onRemoveLineTxt()"><img
+                                src="img/ICONS/trash.png"></button>
                     </div>
-                </form>
-            </section>
-        </div>
+                    <div class="modify-text grid">
+                        <button class="manage-btn size-up" onclick="onSetFontSize(+2)"><img
+                                src="img/ICONS/increase font - icon.png"></button>
+                        <button class="manage-btn size-down" onclick="onSetFontSize(-2)"><img
+                                src="img/ICONS/decrease font - icon.png"></button>
+                        <button class="manage-btn txt-up" onclick="onMoveTxt(-10)">↑</button>
+                        <button class="manage-btn txt-down" onclick="onMoveTxt(+10)">↓</button>
+                        <button class="manage-btn align-left" onclick="onSetDirectionAlign('right')"><img
+                                src="img/ICONS/align-to-left.png"></button>
+                        <button class="manage-btn align-center" onclick="onSetDirectionAlign('center')"><img
+                                src="img/ICONS/center-text-alignment.png"></button>
+                        <button class="manage-btn align-right" onclick="onSetDirectionAlign('left')"><img
+                                src="img/ICONS/align-to-right.png"></button>
+                        <input type="color" class="manage-btn color" onclick="onSetColor()">
+                        <select class="font-select" name="font" onchange="onSetFont(this.value)">
+                            <option value="impact">Impact</option>
+                            <option value="cursive">Cursive</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="mosaic">Mosaic</option>
+                        </select>
+                    </div>
+                    <form class="share-container flex" method="POST" enctype="multipart/form-data"
+                        onsubmit="uploadImg()">
+                        <div class="inputs">
+                            <input type="file" name="image" onchange="onImgInput(event)" />
+                            <button onclick="uploadImg()" data-trans="upload" class="upload">Upload</button>
+                            <a href="#" onclick="downloadImg(this)" data-trans="download" class="download"
+                                download="my-img.jpg">Download</a>
+                        </div>
+                    </form>
+                </section>
+            </div>
     </main>
     <footer class="main-footer flex">
         <div class="logo-write">Meme Generators</div>
-        <div class="credits">© Michael Mann - All Rights Reserved</div>
+        <div class="credits" data-trans="credits">© Michael Mann - All Rights Reserved</div>
     </footer>
+    <script src="js/i18.services.js"></script>
     <script src="js/upload-services.js"></script>
     <script src="js/storage-services.js"></script>
     <script src="js/editor-services.js"></script>

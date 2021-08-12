@@ -1,79 +1,87 @@
 'use strict'
 const KEY = 'memesDB'
 var gMeme = []
+var gColor;
 
-function getMeme() {
+const getMeme = () => {
     return gMeme
 }
 
-function getCurrentTxt() {
+const getCurrentTxt = () => {
     var idxLine = gMeme.selectedLineIdx
     return gMeme.lines[idxLine]
 }
 
-function createMeme(id) {
+const createMeme = (id) => {
     gMeme = {
         selectedImgId: id,
         selectedLineIdx: 0,
         lines: [{
             txt: 'Enjoy your meme',
-            size: 20,
+            size: 30,
             align: 'center',
-            color: 'white',
+            color: gColor,
             pos: {
-                x: 200,
-                y: 25
+                x: gCanvas.width / 2,
+                y: gCanvas.height / 12
             },
             font: 'impact',
         }],
     }
 }
 
-function createTxt(txt) {
+const createTxt = (txt) => {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
-function removeLineTxt() {
+const removeLineTxt = () => {
     var idxLine = gMeme.selectedLineIdx
     if (gMeme.lines.length === 1) return
     gMeme.lines.splice(idxLine, 1)
     gMeme.selectedLineIdx = 0
+
 }
 
-
-function addText() {
+const addText = () => {
     gMeme.selectedLineIdx++
     var newLine = {
         txt: 'Your text here',
-        size: 20,
+        size: 30,
         align: 'center',
-        color: 'white',
-        pos: newTextPosition(gMeme.lines.length),
+        color: gColor,
+        pos: textPosition(gMeme.lines.length),
         font: 'impact',
     }
     gMeme.lines.push(newLine)
 }
 
-function newTextPosition(idx) {
-    switch (idx) {
-        case 1:
-            return {
-                x: 200,
-                    y: 140
-            }
-            case 2:
-                return {
-                    x: 200, y: 80
-                }
-                default:
-                    return {
-                        x: 200,
-                            y: 80
-                    }
+const setColor = () => {
+    var elCol = document.querySelector('.color').value
+    gColor = elCol
+}
+
+const getColor = () => {
+    return gColor
+}
+
+const textPosition = (idx) => {
+    if (idx === 1) return {
+        x: gCanvas.width / 2,
+        y: 380
+    }
+    else if (idx === 2) return {
+        x: gCanvas.width / 2,
+        y: gCanvas.height / 2
+    }
+    else {
+        return {
+            x: gCanvas.width / 2,
+            y: gCanvas.height / 2
+        }
     }
 }
 
-function switchLine() {
+const switchLine = () => {
     if (gMeme.selectedLineIdx === gMeme.lines.length - 1) {
         gMeme.selectedLineIdx = 0
     } else {
@@ -81,43 +89,33 @@ function switchLine() {
     }
 }
 
-
-function setFontSize(diff) {
+const setFontSize = (diff) => {
     var currLine = getCurrentTxt()
     currLine.size += diff
 }
 
-function setDirectionAlign(alignKey) {
+const setDirectionAlign = (alignKey) => {
     var currLine = getCurrentTxt()
     currLine.align = alignKey
 }
 
-function moveTxt(diff) {
+const moveTxt = (diff) => {
     var currLine = getCurrentTxt()
     currLine.pos.y += diff
 }
 
+const setFont = (font) => {
+    var currLine = getCurrentTxt()
+    currLine.font = font
+}
 
-function loadMemes() {
+const loadMemes = () => {
     var meme = loadFromStorage(KEY)
     if (!meme) return
     gMeme = meme
 }
 
 
-function _saveMemesToStorage() {
+const _saveMemesToStorage = () => {
     saveToStorage(KEY, gMeme)
-}
-
-
-// function getMemeByImg(imgContent) {
-//     var memes = getMemesFromStorage()
-//     return memes.find(function (meme) {
-//         return meme.imgContent === imgContent
-//     })
-// }
-
-function setFont(font) {
-    var currLine = getCurrentTxt()
-    currLine.font = font
 }

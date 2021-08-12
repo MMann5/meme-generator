@@ -5,128 +5,117 @@ var gCanvas;
 var gCtx
 var gBeginPos
 
-function onInit() {
+const onInit = () => {
     gCanvas = document.querySelector('#canvas-edit')
     gCtx = gCanvas.getContext('2d')
-    resizeCanvas()
+    window.addEventListener('resize', (ev) => {
+        resizeCanvas()
+    })
     renderImages()
+    doTrans()
+    // addListeners()
 }
 
-function renderImages() {
+
+const renderImages = () => {
     var imgs = getImages()
     var key = getFilter()
     if (key) {
-        imgs = gImgages.filter(img => {
-            return img.keywords.some(function (keyword) {
+        imgs = gImgages.filter((img) => {
+            return img.keywords.some((keyword) => {
                 return keyword.includes(key)
             })
         })
     }
     var strHTML = imgs.map(img => {
-        return `<img class="meme-canevas" onclick="openInCanvas(${img.id})" src="${img.url}"></img>`
+        return `<img class="meme-canevas zoom overlay" onclick="openInCanvas(${img.id})" src="${img.url}"></img>`
     })
     document.querySelector('.pictures-container').innerHTML = strHTML.join('')
 }
 
+const onSetLang = (lang) => {
+    setLang(lang);
+    if (lang === 'he') {
+        document.body.classList.add('rtl')
+    } else {
+        document.body.classList.remove('rtl')
+    }
+    doTrans();
+    render();
+}
 
-function renderCanvas() {
+const renderCanvas = () => {
     var meme = getMeme()
     var img = new Image()
     img.src = getImageById(meme.selectedImgId).url
     img.onload = () => {
+        getColor()
         clearCanvas()
         setInputText()
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
-        meme.lines.forEach(line => {
+        meme.lines.forEach((line) => {
             drawText(line, line.pos.x, line.pos.y)
             drawRect()
         });
     }
 }
 
-function renderImg(img) {
+const renderImg = (img) => {
     gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 }
 
-function onFilter() {
+const onFilter = () => {
     renderImages()
 }
 
-
-// function addListeners() {
-//     addMouseListeners()
-//     addTouchListeners()
-// }
-
-// function addMouseListeners() {
-//     gCanvas.addEventListener('mousemove', onMove)
-//     gCanvas.addEventListener('mousedown', onDown)
-//     gCanvas.addEventListener('mouseup', onUp)
-// }
-
-// function addTouchListeners() {
-//     gCanvas.addEventListener('touchmove', onMove)
-//     gCanvas.addEventListener('touchstart', onDown)
-//     gCanvas.addEventListener('touchend', onUp)
-// }
-
-function resizeCanvas() {
-    // gCanvas.style.width = '100%'
-    // gCanvas.style.height = '100%'
+const resizeCanvas = () => {
     var elContainer = document.querySelector('.canvas-container');
-    gCanvas.width = elContainer.offsetWidth - 20
+    gCanvas.width = elContainer.offsetWidth - 10
 }
 
-function onCreateTxt(txt) {
-    console.log('txt');
+const onCreateTxt = (txt) => {
     createTxt(txt)
     renderCanvas()
 }
 
 
-function onAddText() {
-    console.log('add');
+const onAddText = () => {
     addText()
     renderCanvas()
-    focusInput()
 }
 
-function onRemoveLineTxt() {
-    console.log('remove');
+const onRemoveLineTxt = () => {
+
     removeLineTxt()
     renderCanvas()
 }
 
-function onSwitch() {
-    console.log('weh');
+const onSwitch = () => {
     switchLine()
     renderCanvas()
 }
 
-function onSetFontSize(diff) {
-    console.log('sizeeee');
+const onSetFontSize = (diff) => {
     setFontSize(diff)
     renderCanvas()
 }
 
-function onSetDirectionAlign(alignKey) {
-    console.log('bjr');
+const onSetDirectionAlign = (alignKey) => {
     setDirectionAlign(alignKey)
     renderCanvas()
 }
 
-function onSetFont(font) {
+const onSetFont = (font) => {
     setFont(font)
     renderCanvas()
 }
 
-function onMoveTxt(diff) {
-    console.log('move');
+const onMoveTxt = (diff) => {
     moveTxt(diff)
     renderCanvas()
 }
 
-function openPage(pageName) {
+const openPage = (pageName) => {
     var gallery = 'none'
     var editor = 'none'
     switch (pageName) {
@@ -144,7 +133,7 @@ function openPage(pageName) {
     document.querySelector('.editor').style.display = editor
 }
 
-function addActive(elPage) {
+const addActive = (elPage) => {
     var elPages = document.querySelectorAll('.header-page')
     elPages.forEach((elPage) => {
         elPage.classList.remove('active')
@@ -152,53 +141,33 @@ function addActive(elPage) {
     elPage.classList.add('active')
 }
 
-function openInCanvas(id) {
+const openInCanvas = (id) => {
     openPage('editor')
     resizeCanvas()
     createMeme(id)
     renderCanvas()
-    // selectInput()
-    focusInput()
 }
 
-function focusInput() {
-    var elInput = document.querySelector('.meme-text')
-    elInput.focus()
-    elInput.innerHTML = ''
-}
 
-// function selectInput() {
-//     var elInput = document.querySelector('.meme-text')
-//     elInput.select()
-// }
-
-
-
-function clearCanvas() {
+const clearCanvas = () => {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
 }
 
-// function onAddUserImg(img) {
-//     const addedImg = addUserImg(img)
-//     createMeme(addedImg.id)
-//     renderCanvas()
-// }
-
-function setInputText() {
+const setInputText = () => {
     var meme = getMeme()
     document.querySelector('.meme-text').value = meme.lines[meme.selectedLineIdx].txt
 }
 
-function downloadImg(elLink) {
+const downloadImg = (elLink) => {
     var imgContent = gCanvas.toDataURL('image/jpeg')
     elLink.href = imgContent
 }
 
-function onImgInput(ev) {
+const onImgInput = (ev) => {
     loadImageFromInput(ev, renderImg)
 }
 
-function loadImageFromInput(ev, onImageReady) {
+const loadImageFromInput = (ev, onImageReady) => {
     document.querySelector('.share-container').innerHTML = ''
     var reader = new FileReader()
 
@@ -210,7 +179,12 @@ function loadImageFromInput(ev, onImageReady) {
     reader.readAsDataURL(ev.target.files[0])
 }
 
-function drawText(line, x, y) {
+const onSetColor = () => {
+    setColor()
+    drawText()
+}
+
+const drawText = (line, x, y) => {
     gCtx.lineWidth = 1;
     gCtx.strokeStyle = 'black'
     gCtx.fillStyle = line.color
@@ -220,9 +194,7 @@ function drawText(line, x, y) {
     gCtx.strokeText(line.txt, x, y)
 }
 
-function drawRect() {
-    var meme = getMeme()
-    if (meme.isPrint) return
+const drawRect = () => {
     var currLine = getCurrentTxt()
     gCtx.strokeStyle = 'black'
     gCtx.strokeRect(2, currLine.pos.y - currLine.size, gCanvas.width - 5, currLine.size + 5)
