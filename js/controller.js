@@ -3,7 +3,6 @@
 const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 var gCanvas;
 var gCtx
-var gBeginPos
 
 const onInit = () => {
     gCanvas = document.querySelector('#canvas-edit')
@@ -75,7 +74,6 @@ const onCreateTxt = txt => {
     renderCanvas()
 }
 
-
 const onAddText = () => {
     addText()
     renderCanvas()
@@ -146,7 +144,6 @@ const openInCanvas = id => {
     renderCanvas()
 }
 
-
 const clearCanvas = () => {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height)
 }
@@ -176,8 +173,6 @@ const loadImageFromInput = (ev, onImageReady) => {
     }
     reader.readAsDataURL(ev.target.files[0])
 }
-
-
 
 const drawText = (line, x, y) => {
     gCtx.lineWidth = 1;

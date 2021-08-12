@@ -39,7 +39,6 @@ const removeLineTxt = () => {
     if (gMeme.lines.length === 1) return
     gMeme.lines.splice(idxLine, 1)
     gMeme.selectedLineIdx = 0
-
 }
 
 const addText = () => {
@@ -109,12 +108,12 @@ const setFont = font => {
     currLine.font = font
 }
 
-const loadMemes = () => {
-    var meme = loadFromStorage(KEY)
-    if (!meme) return
-    gMeme = meme
-}
+// const loadMemes = () => {
+//     var meme = loadFromStorage(KEY)
+//     if (!meme) return
+//     gMeme = meme
+// }
 
-const _saveMemesToStorage = () => {
-    saveToStorage(KEY, gMeme)
-}
+// const _saveMemesToStorage = () => {
+//     saveToStorage(KEY, gMeme)
+// }

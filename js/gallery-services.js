@@ -95,7 +95,6 @@ var gImgages = [{
     },
 ]
 
-
 var gKeywords = [{
         key: 'Politic'
     },
@@ -126,8 +125,4 @@ const getImages = () => {
 const getFilter = () => {
     gSortBy = document.querySelector('#pictures').value
     return gSortBy
-}
-
-function coucou() {
-    console.log('coucou')
 }

@@ -33,4 +33,3 @@ const doUploadImg = (imgDataUrl, onSuccess) => {
             console.error(err)
         })
 }
-

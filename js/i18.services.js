@@ -46,6 +46,10 @@ var gTrans = {
         en: '© Michael Mann',
         he: '© מיכאל מן '
     },
+    'category-placeholder': {
+        en: 'write your category',
+        he: 'כתוב את הקטגוריה שלך'
+    },
 }
 
 const getTrans = transKey => {
