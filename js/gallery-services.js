@@ -1,8 +1,6 @@
 'use strict'
 
 var gSortBy = 'all'
-
-
 var gImgages = [{
         id: 1,
         url: 'img/1.jpg',

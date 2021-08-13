@@ -1,7 +1,6 @@
 'use strict'
 const KEY = 'memesDB'
 var gMeme = []
-var gColor;
 
 const getMeme = () => {
     return gMeme
@@ -20,7 +19,7 @@ const createMeme = id => {
             txt: 'Enjoy your meme',
             size: 25,
             align: 'center',
-            color: gColor,
+            color: 'black',
             pos: {
                 x: gCanvas.width / 2,
                 y: gCanvas.height / 12
@@ -57,10 +56,6 @@ const addText = () => {
 const setColor = value => {
     var currLine = getCurrentTxt()
     currLine.color = value
-}
-
-const getColor = () => {
-    return gColor
 }
 
 const textPosition = idx => {
