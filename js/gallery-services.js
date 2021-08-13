@@ -93,25 +93,6 @@ var gImgages = [{
     },
 ]
 
-var gKeywords = [{
-        key: 'Politic'
-    },
-    {
-        key: 'Animals'
-    },
-    {
-        key: 'kids'
-    },
-    {
-        key: 'funny'
-    },
-
-]
-
-const getKeywords = () => {
-    return gKeywords
-}
-
 const getImageById = imgId => {
     return gImgages.find(img => img.id === imgId)
 }

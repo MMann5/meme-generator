@@ -7,7 +7,7 @@ var gCtx
 const onInit = () => {
     gCanvas = document.querySelector('#canvas-edit')
     gCtx = gCanvas.getContext('2d')
-    window.addEventListener('resize', (ev) => {
+    window.addEventListener('resize', () => {
         resizeCanvas()
     })
     renderImages()
@@ -47,7 +47,7 @@ const renderCanvas = () => {
     img.onload = () => {
         clearCanvas()
         setInputText()
-        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height)
+        renderImg(img)
         meme.lines.forEach(line => {
             drawText(line, line.pos.x, line.pos.y)
         });
@@ -87,6 +87,7 @@ const onSwitch = () => {
     switchLine()
     renderCanvas()
 }
+
 const onSetColor = value => {
     setColor(value)
     renderCanvas()
@@ -157,7 +158,13 @@ const downloadImg = elLink => {
 }
 
 const onImgInput = ev => {
-    loadImageFromInput(ev, renderImg)
+    loadImageFromInput(ev, onImgInputUser)
+}
+
+const onImgInputUser =img => {
+    var imgUser = imgInputUser(img)
+    createMeme(imgUser.id)
+    renderCanvas()
 }
 
 const loadImageFromInput = (ev, onImageReady) => {

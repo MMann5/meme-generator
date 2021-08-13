@@ -1,22 +1,13 @@
 'use strict'
-const KEY = 'memesDB'
-var gMeme = []
+var gMeme;
 
-const getMeme = () => {
-    return gMeme
-}
-
-const getCurrentTxt = () => {
-    var idxLine = gMeme.selectedLineIdx
-    return gMeme.lines[idxLine]
-}
 
 const createMeme = id => {
     gMeme = {
         selectedImgId: id,
         selectedLineIdx: 0,
         lines: [{
-            txt: 'Enjoy your meme',
+            txt: 'text number : 1',
             size: 25,
             align: 'center',
             color: 'black',
@@ -43,7 +34,7 @@ const removeLineTxt = () => {
 const addText = () => {
     gMeme.selectedLineIdx++
     var newLine = {
-        txt: 'Enjoy your meme',
+        txt: `text number : ${gMeme.selectedLineIdx +1 }`,
         size: 25,
         align: 'center',
         color: 'black',
@@ -103,12 +94,20 @@ const setFont = font => {
     currLine.font = font
 }
 
-// const loadMemes = () => {
-//     var meme = loadFromStorage(KEY)
-//     if (!meme) return
-//     gMeme = meme
-// }
+const imgInputUser= url => {
+    var images = getImages()
+    var newImg = {
+        id: images.length+1,
+        url: url.src,
+    }
+    images.push(newImg)
+    return newImg
+}
 
-// const _saveMemesToStorage = () => {
-//     saveToStorage(KEY, gMeme)
-// }
+const getMeme = () => {
+    return gMeme
+}
+
+const getCurrentTxt = () => {
+    return gMeme.lines[gMeme.selectedLineIdx]
+}
