@@ -105,27 +105,3 @@ const getFilter = () => {
     gSortBy = document.querySelector('#pictures').value
     return gSortBy
 }
-
-// function onWord(val) {
-//     switch (val) {
-//         case 'animals':
-//             gSortBy = 'animals'
-//             break;
-//         case 'politic':
-//             gSortBy = 'politic'
-//             break;
-//         case 'movie':
-//             gSortBy = 'movie'
-//             break;
-//         case 'funny':
-//             gSortBy = 'funny'
-//             break;
-//         case 'kids':
-//             gSortBy = 'kids'
-//             break;
-//         default:
-//             break;
-//     }
-//     console.log('sort',gSortBy);
-//     return gSortBy
-// }
