@@ -10,6 +10,7 @@
 </head>
 
 <body onload="onInit()">
+    <div class="screen" onclick="toggleMenu()"></div>
     <header class="main-header">
         <div class="header-container main-layout flex space-between align-center ">
             <div class="logo"><img src="img/LOGO.png"></div>
@@ -17,33 +18,35 @@
                 <ul class="clean-list flex">
                     <li>
                         <a href="#" data-trans="gallery" class="nav header-page gallery-page active"
-                            onclick="openPage('gallery')"> Gallery
+                            onclick="openPage('gallery')">Gallery
                         </a>
                     </li>
                     <li>
                         <a href="#" data-trans="editor" class="nav header-page editor-page"
-                            onclick="openPage('editor')"> Editor </a>
+                            onclick="openPage('editor')">Editor</a>
                     </li>
                     <li>
                         <select class="nav trans" onchange="onSetLang(this.value)">
-                            <option value="en">English</option>
-                            <option value="he">עברית</option>
+                            <option value="en">US</option>
+                            <option value="he">HE</option>
                         </select>
                     </li>
                 </ul>
             </nav>
+            <button class="btn-menu-toggle" onclick="toggleMenu()">☰</button>
     </header>
     <main>
         <div class="gallery main-layout ">
             <div class="category">
                 <h3 data-trans="category">Categories</h3>
-                <p data-trans="animals">ANIMALS</p>
-                <p data-trans="politic">POLITICS</p>
-                <p data-trans="movie">MOVIE</p>
-                <p data-trans="funny">FUNNY</p>
-                <p data-trans="kids">KIDS</p>
+                <p value="animals" data-trans="animals" onclick="onWord('animals')">ANIMALS</p>
+                <p value="politic" data-trans="politic" onclick="onWord('politic')">POLITICS</p>
+                <p value="movie" data-trans="movie" onclick="onWord('movie')">MOVIE</p>
+                <p value="funny" data-trans="funny" onclick="onWord('funny')">FUNNY</p>
+                <p value="kids" data-trans="kids" onclick="onWord('kids')">KIDS</p>
             </div>
-            <input type="text" id="pictures" data-trans="category-placeholder" oninput="onFilter()">
+            <input type="text" id="pictures" data-trans="category-placeholder" placeholder="write your category"
+                oninput="onFilter()">
             <div class="container pictures-container grid">
             </div>
         </div>
@@ -96,6 +99,7 @@
         <div class="credits" data-trans="credits">© Michael Mann - All Rights Reserved</div>
     </footer>
     <script src="js/i18.services.js"></script>
+    <script src="js/meme-saved.js"></script>
     <script src="js/upload-services.js"></script>
     <script src="js/storage-services.js"></script>
     <script src="js/editor-services.js"></script>

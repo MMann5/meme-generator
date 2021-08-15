@@ -1,6 +1,4 @@
 'use strict'
-
-const gTouchEvs = ['touchstart', 'touchmove', 'touchend']
 var gCanvas;
 var gCtx
 
@@ -47,16 +45,12 @@ const renderCanvas = () => {
     img.onload = () => {
         clearCanvas()
         setInputText()
-        renderImg(img)
+        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
         meme.lines.forEach(line => {
             drawText(line, line.pos.x, line.pos.y)
         });
         gCtx.save()
     }
-}
-
-const renderImg = img => {
-    gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
 }
 
 const onFilter = () => {
@@ -153,15 +147,15 @@ const setInputText = () => {
 }
 
 const downloadImg = elLink => {
-    var imgContent = gCanvas.toDataURL('image/jpeg')
-    elLink.href = imgContent
+    var img = gCanvas.toDataURL('image/jpeg')
+    elLink.href = img
 }
 
 const onImgInput = ev => {
     loadImageFromInput(ev, onImgInputUser)
 }
 
-const onImgInputUser =img => {
+const onImgInputUser = img => {
     var imgUser = imgInputUser(img)
     createMeme(imgUser.id)
     renderCanvas()
@@ -190,4 +184,8 @@ const drawText = (line, x, y) => {
     var currLine = getCurrentTxt()
     gCtx.strokeStyle = 'black'
     gCtx.strokeRect(2, currLine.pos.y - currLine.size, gCanvas.width - 5, currLine.size + 5)
+}
+
+function toggleMenu() {
+    document.body.classList.toggle('menu-open');
 }

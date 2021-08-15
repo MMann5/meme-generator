@@ -111,3 +111,7 @@ const getMeme = () => {
 const getCurrentTxt = () => {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
+
+function setSavedMeme(meme) {
+    gMeme = meme
+}
