@@ -155,13 +155,8 @@ color: white;
 
 }
 
-.zoom {
-    filter: blur(5px);
-}
-
 .zoom:hover {
-    -webkit-filter: blur(0);
-    filter: blur(0);
+    filter: grayscale();
 }
 
 .container {
@@ -388,6 +383,9 @@ a.download {
 
     .zoom {
         filter: blur(0);
+    }
+    .zoom:hover {
+        filter: inherit;
     }
 
     .canvas-container {
