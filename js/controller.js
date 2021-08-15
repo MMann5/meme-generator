@@ -15,13 +15,11 @@ const onInit = () => {
 const renderImages = () => {
     var imgs = getImages()
     var key = getFilter()
-    if (key) {
-        imgs = gImgages.filter((img) => {
-            return img.keywords.some((keyword) => {
-                return keyword.includes(key)
-            })
+    imgs = gImgages.filter((img) => {
+        return img.keywords.some((keyword) => {
+            return keyword.includes(key)
         })
-    }
+    })
     var strHTML = imgs.map(img => {
         return `<img class="meme-canevas zoom" onclick="openInCanvas(${img.id})" src="${img.url}"></img>`
     })
